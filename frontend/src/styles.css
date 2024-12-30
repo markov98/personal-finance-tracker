@@ -3,3 +3,16 @@ form {
     flex-direction: column;
     max-width: 20em;
 }
+
+.auth-menu {
+    display: flex;
+    gap: 1em
+}
+
+.auth-menu a {
+    color: white;
+    background-color: blue;
+    padding: 0.3em;
+    border-radius: 0.2em;
+    text-decoration: none;
+}
