@@ -1,3 +1,4 @@
 module.exports = {
-    port: 3000
+    PORT: 3000,
+    DBPATH: 'src/db/project.db',
 }

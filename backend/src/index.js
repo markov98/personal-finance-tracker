@@ -1,8 +1,8 @@
 const app = require('./config/express')();
-
-const port = require('./constants').port
+const db = require('./config/db')()
+const PORT = require('./constants').PORT
 
 // Start the server on port 3000
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
