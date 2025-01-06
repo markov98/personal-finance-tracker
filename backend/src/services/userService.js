@@ -7,7 +7,7 @@ const { SECRET } = require("../constants");
 exports.register = async (username, email, password) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const { lastID } = await db.asyncRun(`
+    const { lastID } = await db.run(`
         INSERT INTO users (username, email, password)
         VALUES (?, ?, ?)
     `, [username, email, hashedPassword]);
@@ -17,7 +17,7 @@ exports.register = async (username, email, password) => {
 };
 
 exports.login = async (email, password) => {
-    const user = await db.asyncGet('SELECT id, email, username, password FROM users WHERE email = ?', [email]);
+    const user = await db.get('SELECT id, email, username, password FROM users WHERE email = ?', [email]);
 
     if (!user) {
         throw new Error('User not found');
