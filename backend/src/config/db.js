@@ -35,4 +35,4 @@ const initializeDatabase = () => {
     return db;
 };
 
-module.exports = initializeDatabase;
+module.exports = initializeDatabase();
