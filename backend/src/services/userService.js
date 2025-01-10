@@ -6,8 +6,8 @@ const { SECRET } = require("../constants");
 exports.register = async (username, email, password) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const stmt = db.prepare(`
-        INSERT INTO users (username, email, password)
-        VALUES (?, ?, ?)
+        INSERT INTO users (username, email, password, balance)
+        VALUES (?, ?, ?, 0.0)
     `);
     
     const info = stmt.run(username, email, hashedPassword);

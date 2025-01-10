@@ -12,7 +12,8 @@ const initializeDatabase = () => {
                 id INTEGER PRIMARY KEY,
                 username TEXT NOT NULL,
                 email TEXT NOT NULL UNIQUE,
-                password TEXT NOT NULL
+                password TEXT NOT NULL,
+                balance REAL NOT NULL 
             )
         `);
 
