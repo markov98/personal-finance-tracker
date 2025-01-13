@@ -33,6 +33,23 @@ exports.login = async (email, password) => {
     return getResult(user);
 };
 
+exports.addBalance = async (email, amount) => {
+    const stmt = db.prepare(`
+        UPDATE users 
+        SET balance = balance + ?
+        WHERE email = ?
+    `);
+    
+    const info = stmt.run(amount, email);
+    
+    if (info.changes === 0) {
+        throw new Error('User not found or update failed');
+    }
+    
+    return { message: 'Balance updated successfully' };
+};
+
+
 function getResult(user) {
     const payload = { _id: user.id, email: user.email };
     const token = jwt.sign(payload, SECRET, { expiresIn: "1h" });
