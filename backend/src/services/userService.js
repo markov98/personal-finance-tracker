@@ -77,6 +77,17 @@ exports.removeBalance = async (username, amount) => {
     return { message: 'Balance removed successfully' };
 };
 
+exports.getBalance = async (email) => {
+    const stmt = db.prepare('SELECT balance FROM users WHERE email = ?');
+    const user = stmt.get(email);
+
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    return { balance: user.balance };
+};
+
 
 function getResult(user) {
     const payload = { _id: user.id, email: user.email };
