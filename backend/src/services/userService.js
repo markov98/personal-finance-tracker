@@ -51,7 +51,7 @@ exports.addBalance = async (email, amount) => {
 
 exports.removeBalance = async (username, amount) => {
     // Fetching the user's current ballance
-    const getUserStmt = db.prepare('SELECT balance FROM users WHERE id = ?');
+    const getUserStmt = db.prepare('SELECT balance FROM users WHERE username = ?');
     const user = getUserStmt.get(userId);
 
     if (!user) {
