@@ -37,3 +37,11 @@ form {
     background-color: green;
     
 }
+
+.auth-form input[type=submit] {
+    font-size: 20px;
+    width: 6em;
+    color: white;
+    background-color: green;
+    border-radius: 0.5em;
+}
