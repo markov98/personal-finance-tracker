@@ -8,6 +8,7 @@ form {
     border-spacing: 0;
     border-radius: 2em;
     border: 0.1em solid black;
+    overflow: hidden;
 }
 
 
@@ -25,4 +26,14 @@ form {
     height: 100%;
     padding: 0.5em;
     box-sizing: border-box; 
+}
+
+.auth-menu td:nth-child(1) a {
+    color: green;
+}
+
+.auth-menu td:nth-child(2) a {
+    color: white;
+    background-color: green;
+    
 }
