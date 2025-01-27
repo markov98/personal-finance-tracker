@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { UserModule } from './user/user.module';
-
-
+import { BrowserModule } from '@angular/platform-browser';
+import { routes } from './app.routes';
 
 @NgModule({
   declarations: [
@@ -12,10 +12,12 @@ import { UserModule } from './user/user.module';
   ],
   imports: [
     CommonModule,
+    BrowserModule,
     UserModule,
-    RouterOutlet,
-    RouterLink,
-    RouterLinkActive,
+    RouterModule.forRoot(routes)
+  ],
+  bootstrap: [
+    AppComponent
   ]
 })
 export class AppModule { }
