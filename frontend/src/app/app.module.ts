@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
 import { UserModule } from './user/user.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { routes } from './app.routes';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,10 +13,11 @@ import { routes } from './app.routes';
     CommonModule,
     BrowserModule,
     UserModule,
-    RouterModule.forRoot(routes)
+    AppRoutingModule
   ],
   bootstrap: [
     AppComponent
   ]
 })
+
 export class AppModule { }
