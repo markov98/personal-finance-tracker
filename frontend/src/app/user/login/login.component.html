@@ -1,8 +1,17 @@
 <h2 class="auth-heading">Login</h2>
-<form class="auth-form"> 
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-    <label for="password">Password:</label> 
-    <input type="password" id="password" name="password" required> 
-    <input type="submit" value="Login">
+<form [formGroup]="form" (ngSubmit)="login()" class="auth-form">
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email" required>
+    <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
+        <div *ngIf="form.get('email')?.errors?.['required']">Email is required.</div>
+        <div *ngIf="form.get('email')?.errors?.['email']">Email must be valid.</div>
+    </div>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" formControlName="password" required>
+    <div *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)">
+        <div *ngIf="form.get('password')?.errors?.['required']">Password is required.</div>
+    </div>
+
+    <input type="submit" value="Login" [disabled]="form.invalid">
 </form>
