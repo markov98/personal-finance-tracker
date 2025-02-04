@@ -13,14 +13,14 @@
         <div *ngIf="form.get('email')?.errors?.['required']">Email is required.</div>
         <div *ngIf="form.get('email')?.errors?.['email']">Email must be valid.</div>
     </div>
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" formControlName="password" required>
-    <label for="confirm-password">Confirm Password:</label>
-    <input type="password" id="confirm-password" formControlName="rePassword" required>
-    <div *ngIf="passGroup?.errors?.['matchPasswordsValidator']">
-        Passwords must match.
-    </div>
-
+    <ng-container formGroupName="passGroup">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" required>
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" formControlName="rePassword" required>
+        <div *ngIf="passGroup?.errors?.['matchPasswordsValidator']">
+            Passwords must match.
+        </div>
+    </ng-container>
     <input type="submit" value="Signup" [disabled]="form.invalid">
 </form>
