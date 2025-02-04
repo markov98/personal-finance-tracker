@@ -10,16 +10,18 @@ import { Router } from '@angular/router';
   standalone: false,
 })
 export class LoginComponent {
-  form = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]]
-  });
+  form;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router
-  ) {}
+  ) {
+    this.form = this.fb.group({
+      email: [''],
+      password: ['']
+    });
+  }
 
   login(): void {
     if (this.form.invalid) {
