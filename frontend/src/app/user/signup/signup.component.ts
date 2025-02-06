@@ -21,7 +21,7 @@ export class SignupComponent {
   ) {
     this.form = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
-      email: ['', [Validators.required, emailValidator(['abv', 'gmail', 'yahoo'])]],
+      email: ['', [Validators.required, emailValidator(['com','bg','gov'])]],
       passGroup: this.fb.group(
         {
           password: ['', [Validators.required]],
@@ -39,9 +39,14 @@ export class SignupComponent {
   }
 
   signup(): void {
+    console.log('test0');
+
     if (this.form.invalid) {
       return;
     }
+
+    console.log('test');
+    
 
     const { username, email, passGroup: { password, rePassword } = {} } = this.form.value;
 
