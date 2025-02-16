@@ -5,6 +5,7 @@ import { ErrorService } from './error.service';
   selector: 'app-error',
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.css'],
+  standalone: false,
 })
 export class ErrorComponent implements OnInit {
   errorMsg = '';

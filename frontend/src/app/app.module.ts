@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { provideHttpClient } from '@angular/common/http';
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { provideHttpClient } from '@angular/common/http';
     BrowserModule,
     UserModule,
     AppRoutingModule,
+    CoreModule
   ],
   providers: [provideHttpClient()],
   bootstrap: [
