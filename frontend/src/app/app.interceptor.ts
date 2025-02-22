@@ -9,7 +9,7 @@ const { apiUrl } = environment;
 
 @Injectable()
 class AppInterceptor implements HttpInterceptor {
-    API = '/api';
+    API = 'api';
 
     constructor(private errorService: ErrorService, private router: Router) { }
 
@@ -37,5 +37,5 @@ class AppInterceptor implements HttpInterceptor {
 }
 
 export const httpInterceptorProviders: Provider[] = [
-    { provide: HTTP_INTERCEPTORS, useFactory: AppInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
 ];
