@@ -12,5 +12,10 @@ module.exports = () => {
     app.use(auth);
     app.use(router);
 
+    app.use(cors({
+        origin: 'http://localhost:4200',
+        credentials: true,
+      }));
+
     return app;
 }
