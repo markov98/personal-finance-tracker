@@ -4,9 +4,9 @@ import { AppComponent } from './app.component';
 import { UserModule } from './user/user.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
-import { appInterceptorProvider } from './app.interceptor';
+import { httpInterceptorProviders } from './app.interceptor';
 
 
 @NgModule({
@@ -20,7 +20,7 @@ import { appInterceptorProvider } from './app.interceptor';
     AppRoutingModule,
     CoreModule
   ],
-  providers: [provideHttpClient(), appInterceptorProvider],
+  providers: [provideHttpClient(), httpInterceptorProviders],
   bootstrap: [
     AppComponent
   ]

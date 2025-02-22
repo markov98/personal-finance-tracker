@@ -1,10 +1,4 @@
-import {
-    HTTP_INTERCEPTORS,
-    HttpEvent,
-    HttpHandler,
-    HttpInterceptor,
-    HttpRequest,
-} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable, Provider } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 import { environment } from '../environment/env';
@@ -19,10 +13,7 @@ class AppInterceptor implements HttpInterceptor {
 
     constructor(private errorService: ErrorService, private router: Router) { }
 
-    intercept(
-        req: HttpRequest<any>,
-        next: HttpHandler
-    ): Observable<HttpEvent<any>> {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (req.url.startsWith(this.API)) {
             req = req.clone({
                 url: req.url.replace(this.API, apiUrl),
@@ -45,8 +36,6 @@ class AppInterceptor implements HttpInterceptor {
     }
 }
 
-export const appInterceptorProvider: Provider = {
-    useClass: AppInterceptor,
-    multi: true,
-    provide: HTTP_INTERCEPTORS,
-};
+export const httpInterceptorProviders: Provider[] = [
+    { provide: HTTP_INTERCEPTORS, useFactory: AppInterceptor, multi: true },
+];
