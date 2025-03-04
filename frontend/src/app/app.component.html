@@ -1,7 +1,11 @@
 <table class="auth-menu">
-    <tbody>
+    <tbody class="not-logged">
         <td><a routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></td>
         <td><a routerLink="/signup" routerLinkActive="active" ariaCurrentWhenActive="page">Signup</a></td>
+    </tbody>
+    <tbody class="logged">
+        <td><a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">My Finance</a></td>
+        <td><a routerLink="/logout" routerLinkActive="active" ariaCurrentWhenActive="page">Logout</a></td>
     </tbody>
 </table>
 <router-outlet />
