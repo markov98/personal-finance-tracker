@@ -16,6 +16,10 @@ import { AuthMenuComponent } from './auth-menu/auth-menu.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    HeaderComponent,
+    FooterComponent,
   ]
 })
 export class CoreModule { }
