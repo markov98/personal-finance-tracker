@@ -14,38 +14,3 @@ form {
 .invalid-input {
     color: red;
 }
-
-
-.auth-menu td {
-    padding: 0; 
-    border-right: 0.1em solid black; 
-}
-.auth-menu td:last-child {
-    border-right: none;
-}
-.auth-menu td a {
-    display: block; 
-    text-decoration: none; 
-    width: 100%;
-    height: 100%;
-    padding: 0.5em;
-    box-sizing: border-box; 
-}
-
-.auth-menu td:nth-child(1) a {
-    color: green;
-}
-
-.auth-menu td:nth-child(2) a {
-    color: white;
-    background-color: green;
-    
-}
-
-.auth-form input[type=submit] {
-    font-size: 20px;
-    width: 6em;
-    color: white;
-    background-color: green;
-    border-radius: 0.5em;
-}
