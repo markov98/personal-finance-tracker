@@ -11,6 +11,10 @@ form {
     overflow: hidden;
 }
 
+.invalid-inputi {
+    color: red;
+}
+
 
 .auth-menu td {
     padding: 0; 
