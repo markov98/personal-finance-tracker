@@ -10,16 +10,16 @@ export class FinanceService {
 
   addBalance(email: string, amount: number) {
     return this.http
-      .post('api/balnce/add', { email, amount })
+      .post('api/balance/add', { email, amount })
   }
 
   removeBalance(email: string, amount: number) {
     return this.http
-      .post('api/balnce/remove', { email, amount })
+      .post('api/balance/remove', { email, amount })
   }
 
   getBalance(email: string) {
     return this.http
-      .get(`api/balnce/get?${email}`)
+      .get(`api/balance/get?${email}`)
   }
 }
