@@ -4,7 +4,7 @@ import { ErrorComponent } from './error/error.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AuthMenuComponent } from './auth-menu/auth-menu.component';
-
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 
 @NgModule({
@@ -15,7 +15,9 @@ import { AuthMenuComponent } from './auth-menu/auth-menu.component';
     AuthMenuComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterLink,
+    RouterLinkActive
   ],
   exports: [
     HeaderComponent,
