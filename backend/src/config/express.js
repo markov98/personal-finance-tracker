@@ -4,18 +4,17 @@ const router = require('../router');
 const { auth } = require('../middlewares/authMiddleware');
 
 module.exports = () => {
-    const app = express();
+  const app = express();
 
-    app.use(express.urlencoded({ extended: false }));
-    app.use(express.json());
-    app.use(cors());
-    app.use(auth);
-    app.use(router);
+  app.use(cors({
+    origin: 'http://localhost:4200',
+    credentials: true
+  }));
 
-    app.use(cors({
-        origin: 'http://localhost:4200',
-        credentials: true,
-      }));
+  app.use(express.urlencoded({ extended: false }));
+  app.use(express.json());
+  app.use(auth);
+  app.use(router);
 
-    return app;
+  return app;
 }
