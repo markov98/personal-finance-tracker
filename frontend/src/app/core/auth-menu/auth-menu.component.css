@@ -1,11 +1,18 @@
-.auth-menu td {
+.auth-menu table {
+    border-spacing: 0;
+    border-radius: 2em;
+    border: 0.1em solid black;
+    overflow: hidden;
+}
+
+.auth-menu table td {
     padding: 0; 
     border-right: 0.1em solid black; 
 }
-.auth-menu td:last-child {
+.auth-menu table td:last-child {
     border-right: none;
 }
-.auth-menu td a {
+.auth-menu table td a {
     display: block; 
     text-decoration: none; 
     width: 100%;
@@ -14,20 +21,12 @@
     box-sizing: border-box; 
 }
 
-.auth-menu td:nth-child(1) a {
+.auth-menu table td:nth-child(1) a {
     color: green;
 }
 
-.auth-menu td:nth-child(2) a {
+.auth-menu table td:nth-child(2) a {
     color: white;
     background-color: green;
     
-}
-
-.auth-form input[type=submit] {
-    font-size: 20px;
-    width: 6em;
-    color: white;
-    background-color: green;
-    border-radius: 0.5em;
 }

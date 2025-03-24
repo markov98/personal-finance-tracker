@@ -4,13 +4,14 @@ form {
     max-width: 20em;
 }
 
-.auth-menu {
-    border-spacing: 0;
-    border-radius: 2em;
-    border: 0.1em solid black;
-    overflow: hidden;
-}
-
 .invalid-input {
     color: red;
+}
+
+.auth-form input[type=submit] {
+    font-size: 20px;
+    width: 6em;
+    color: white;
+    background-color: green;
+    border-radius: 0.5em;
 }
