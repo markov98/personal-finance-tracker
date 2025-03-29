@@ -33,6 +33,11 @@ exports.login = async (email, password) => {
     return getResult(user);
 };
 
+exports.logout = async (token) => {
+
+    return { message: "User logged out successfully" };
+};
+
 function getResult(user) {
     const payload = { _id: user.id, email: user.email };
     const token = jwt.sign(payload, SECRET, { expiresIn: "1h" });
