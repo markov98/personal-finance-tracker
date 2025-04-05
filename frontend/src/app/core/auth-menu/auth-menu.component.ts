@@ -20,7 +20,7 @@ export class AuthMenuComponent {
   }
 
   logout() {
-    this.userService.logout().subscribe({
+    this.userService.logout(this.userService.user?.accessToken).subscribe({
       next: () => {
         this.router.navigate(['/login']);
       },
