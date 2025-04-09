@@ -12,7 +12,7 @@
 .auth-menu table td:last-child {
     border-right: none;
 }
-.auth-menu table td a {
+.auth-menu table td a, span {
     display: block; 
     text-decoration: none; 
     width: 100%;
@@ -25,8 +25,7 @@
     color: green;
 }
 
-.auth-menu table td:nth-child(2) a {
+.auth-menu table td:nth-child(2) a, .auth-menu table td:nth-child(2) span {
     color: white;
     background-color: green;
-    
 }
