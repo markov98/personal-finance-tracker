@@ -5,6 +5,6 @@
     </table>
     <table *ngIf="isLoggedIn" class="logged">
         <td><a routerLink="/profile" routerLinkActive="active" ariaCurrentWhenActive="page">My Finance</a></td>
-        <td><a routerLink="/logout" routerLinkActive="active" ariaCurrentWhenActive="page">Logout</a></td>
+        <td><span class="logout" (click)="logout()">Logout</span></td>
     </table>
 </div>
