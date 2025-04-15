@@ -61,7 +61,7 @@ export class UserService implements OnDestroy {
 
   getUser(id: string) {
     return this.http
-      .get(`api/users/get?${id}`);
+      .get(`api/users/get/${id}`);
   }
 
   // Unsubscribes from user updates to prevent memory leaks

@@ -33,6 +33,22 @@ exports.login = async (email, password) => {
     return getResult(user);
 };
 
+exports.getUser = async (id) => {
+    const stmt = db.prepare('SELECT id, email, username, balance FROM users WHERE id = ?');
+    const user = stmt.get(id);
+
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    return {
+        _id: user.id,
+        email: user.email,
+        username: user.username,
+        balance: user.balance,
+    };
+};
+
 function getResult(user) {
     const payload = { _id: user.id, email: user.email };
     const token = jwt.sign(payload, SECRET, { expiresIn: "1h" });

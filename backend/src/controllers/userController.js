@@ -29,4 +29,15 @@ router.get("/logout", isAuth, (req, res) => {
     res.send("Logout successful!")
 });
 
+router.get("/get/:id", isAuth, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const result = await userService.getUser(id);
+        res.json(result);
+    } catch (err) {
+        console.error(err); 
+        res.status(500).json({ error: err.message });
+    }
+});
+
 module.exports = router;
