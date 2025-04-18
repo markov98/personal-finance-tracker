@@ -53,9 +53,11 @@ export class UserService implements OnDestroy {
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
-  logout(accessToken?: string) {
+  logout(accessToken: string) {
+    const headers = { Authorization: `Bearer ${accessToken}` };
+    
     return this.http
-      .post('api/users/logout', { accessToken })
+      .post('api/users/logout', {}, { headers })
       .pipe(tap(() => this.user$$.next(undefined)));
   }
 
