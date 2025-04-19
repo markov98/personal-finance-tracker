@@ -23,6 +23,10 @@ export class UserService implements OnDestroy {
     return !!this.user;
   }
 
+  get accessToken(): string | undefined {
+    return this.user?.accessToken;
+  }
+
   constructor(private http: HttpClient) {
     // Subscribe to user state changes
     this.userSubscription = this.user$.subscribe((user) => {

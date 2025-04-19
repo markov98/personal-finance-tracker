@@ -30,7 +30,7 @@ class AppInterceptor implements HttpInterceptor {
         if (this.userService.isLogged) {
             req = req.clone({
                 setHeaders: {
-                    Authorization: `Bearer ${this.userService.getAcessToken()}`
+                    Authorization: `Bearer ${this.userService.accessToken}`
                 }
             });
         }
