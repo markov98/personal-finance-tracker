@@ -4,6 +4,7 @@ import { Observable, catchError } from 'rxjs';
 import { environment } from '../environment/env';
 import { ErrorService } from './core/error/error.service';
 import { Router } from '@angular/router';
+import { UserService } from './user/user.service';
 
 const { apiUrl } = environment;
 
@@ -11,7 +12,11 @@ const { apiUrl } = environment;
 class AppInterceptor implements HttpInterceptor {
     API = 'api'; // Prefix used to identify API requests
 
-    constructor(private errorService: ErrorService, private router: Router) { }
+    constructor(
+        private errorService: ErrorService,
+        private router: Router,
+        private userService: UserService
+    ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // If request URL starts with API, replace it with the full backend URL
@@ -19,6 +24,14 @@ class AppInterceptor implements HttpInterceptor {
             req = req.clone({
                 url: req.url.replace(this.API, apiUrl),
                 withCredentials: true, // Include credentials (cookies, auth headers)
+            });
+        }
+
+        if (this.userService.isLogged) {
+            req = req.clone({
+                setHeaders: {
+                    Authorization: `Bearer ${this.userService.getAcessToken()}`
+                }
             });
         }
 
