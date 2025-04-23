@@ -26,7 +26,7 @@ router.post('/login', async (req, res) => {
 
 router.get("/logout", isAuth, (req, res) => {
     revokeToken(req.token);
-    res.send("Logout successful!")
+    res.json({ message: "Logout successful!" });
 });
 
 router.get("/get/:id", isAuth, async (req, res) => {
