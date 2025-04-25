@@ -27,10 +27,9 @@ class AppInterceptor implements HttpInterceptor {
             });
         }
 
-        if (this.userService.isLogged) {
+        // Setting Authentication header is user is logged
 
-            console.log(this.userService.accessToken);
-            
+        if (this.userService.isLogged) {
 
             req = req.clone({
                 setHeaders: {
