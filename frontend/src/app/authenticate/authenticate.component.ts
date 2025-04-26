@@ -5,8 +5,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-authenticate',
   templateUrl: './authenticate.component.html',
-  styleUrls: ['./authenticate.component.css'],
-  imports: [CommonModule]
+  styleUrls: ['./authenticate.component.css']
 })
 export class AuthenticateComponent implements OnInit {
   isAuthenticating = true;

@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { httpInterceptorProviders } from './app.interceptor';
+import { AuthenticateComponent } from './authenticate/authenticate.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { httpInterceptorProviders } from './app.interceptor';
     BrowserModule,
     UserModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    AuthenticateComponent
   ],
   providers: [provideHttpClient(withInterceptorsFromDi()), httpInterceptorProviders],
   bootstrap: [
