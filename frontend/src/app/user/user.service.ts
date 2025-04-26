@@ -13,7 +13,6 @@ export class UserService implements OnDestroy {
 
   // Stores the current user
   user: UserForAuth | undefined;
-  USER_KEY = '[user]'; // Key for storing user data (if needed)
 
   // Subscription to track user state updates
   userSubscription: Subscription;
@@ -65,7 +64,8 @@ export class UserService implements OnDestroy {
 
   getUser(id: string) {
     return this.http
-      .get(`api/users/get/${id}`);
+      .get(`api/users/get/${id}`)
+      .pipe(tap((user) => this.user$$.next(user)));
   }
 
   // Unsubscribes from user updates to prevent memory leaks
