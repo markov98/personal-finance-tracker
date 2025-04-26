@@ -64,7 +64,7 @@ export class UserService implements OnDestroy {
 
   getUser(id: string) {
     return this.http
-      .get(`api/users/get/${id}`)
+      .get<UserForAuth>(`api/users/get/${id}`)
       .pipe(tap((user) => this.user$$.next(user)));
   }
 
