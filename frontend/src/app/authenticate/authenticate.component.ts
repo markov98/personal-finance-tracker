@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user/user.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-authenticate',
   templateUrl: './authenticate.component.html',
   styleUrls: ['./authenticate.component.css'],
+  imports: [CommonModule]
 })
 export class AuthenticateComponent implements OnInit {
   isAuthenticating = true;
@@ -12,7 +14,7 @@ export class AuthenticateComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getUser().subscribe({
+    this.userService.getUser(this.userService.user?._id || '').subscribe({
       next: () => {
         this.isAuthenticating = false;
       },
