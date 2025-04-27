@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user/user.service';
-import { CommonModule } from '@angular/common';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-authenticate',
   templateUrl: './authenticate.component.html',
-  styleUrls: ['./authenticate.component.css']
+  styleUrls: ['./authenticate.component.css'],
+  standalone: false
 })
 export class AuthenticateComponent implements OnInit {
   isAuthenticating = true;
