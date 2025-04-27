@@ -6,14 +6,28 @@ const initializeDatabase = () => {
     try {
         db = new Database(DBPATH);
 
-        // Create tables if they do not exist
+        // Create users table
         db.exec(`
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY,
                 username TEXT NOT NULL,
                 email TEXT NOT NULL UNIQUE,
                 password TEXT NOT NULL,
-                balance REAL NOT NULL 
+                balance REAL NOT NULL
+            )
+        `);
+
+        // Create transactions table
+        db.exec(`
+            CREATE TABLE IF NOT EXISTS transactions (
+                id INTEGER PRIMARY KEY,
+                user_id INTEGER NOT NULL,
+                amount REAL NOT NULL,
+                type TEXT NOT NULL,
+                category TEXT,
+                description TEXT,
+                date TEXT NOT NULL,
+                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
             )
         `);
 
