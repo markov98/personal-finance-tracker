@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { httpInterceptorProviders } from './app.interceptor';
-import { AuthenticateComponent } from './core/authenticate/authenticate.component';
 
 
 @NgModule({

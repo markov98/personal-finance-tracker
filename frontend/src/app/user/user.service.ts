@@ -2,6 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { UserForAuth } from '../types/user';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,11 +27,27 @@ export class UserService implements OnDestroy {
     return this.user?.accessToken;
   }
 
-  constructor(private http: HttpClient) {
-    // Subscribe to user state changes
+  get userId(): string {
+    const cookieUser = this.cookieService.get('user');
+    console.log(cookieUser);
+    return cookieUser ? JSON.parse(cookieUser)._id : '';
+  }
+
+  constructor(private http: HttpClient, private cookieService: CookieService) {
+    // Subscribe to user state changes and synchronize with cookies  
     this.userSubscription = this.user$.subscribe((user) => {
       this.user = user;
+
+      if (user) {
+        this.cookieService.set('user', JSON.stringify(user), {
+          path: '/',
+          secure: true,
+          sameSite: 'Strict',
+        });
+      }
     });
+
+
   }
 
   // Methods for login, signup, and logout
@@ -59,7 +76,10 @@ export class UserService implements OnDestroy {
   logout() {
     return this.http
       .get('api/users/logout', {})
-      .pipe(tap(() => this.user$$.next(undefined)));
+      .pipe(tap(() => {
+        this.cookieService.delete('user', '/')
+        this.user$$.next(undefined)
+      }));
   }
 
   getUser(id: string) {
