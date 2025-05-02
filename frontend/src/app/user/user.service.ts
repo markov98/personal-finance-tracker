@@ -25,12 +25,12 @@ export class UserService implements OnDestroy {
 
   get accessToken(): string | undefined {
     const cookieUser = this.cookieService.get('user');
-    return cookieUser ? JSON.parse(cookieUser).accessToken : '';
+    return this.user ? this.user.accessToken : cookieUser ? JSON.parse(cookieUser).accessToken : '';
   }
 
   get userId(): string {
     const cookieUser = this.cookieService.get('user');
-    return cookieUser ? JSON.parse(cookieUser)._id : '';
+    return this.user ? this.user._id : cookieUser ? JSON.parse(cookieUser)._id : '';
   }
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
