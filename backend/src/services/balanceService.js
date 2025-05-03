@@ -1,52 +1,28 @@
 const db = require('../config/db')
 
-exports.addBalance = async (email, amount) => {
+exports.transaction = async (userId, amount, type, category, description, date) => {
     try {
-        const stmt = db.prepare(`
-            UPDATE users 
-            SET balance = balance + ?
-            WHERE email = ?
-        `);
-        
-        const info = stmt.run(amount, email);
-        
-        if (info.changes === 0) {
-            throw new Error('User not found or update failed');
-        }
-        
-        return { message: 'Balance updated successfully' };
-    } catch (error) {
-        throw new Error(error.message);
-    }
-};
-
-exports.removeBalance = async (email, amount) => {
-    try {
-        // Fetching the user's current balance
-        const getUserStmt = db.prepare('SELECT balance FROM users WHERE email = ?');
-        const user = getUserStmt.get(email);
-
-        if (!user) {
-            throw new Error('User not found');
+        if (!['deposit', 'withdrawal'].includes(type)) {
+            throw new Error('Invalid transaction type. Use "deposit" or "withdrawal".');
         }
 
-        if (user.balance < amount) {
-            throw new Error('Insufficient balance');
-        }
+        const transaction = db.transaction(() => {
+            const stmt = db.prepare(`
+                INSERT INTO transactions (user_id, amount, type, category, description, date)
+                VALUES (?, ?, ?, ?, ?, ?)
+            `);
+            stmt.run(userId, amount, type, category, description, date);
 
-        // If enough balance, proceed to update it
-        const updateStmt = db.prepare(`
-            UPDATE users
-            SET balance = balance - ?
-            WHERE email = ?
-        `);
-        const info = updateStmt.run(amount, email);
+            const balanceUpdateStmt = db.prepare(`
+                UPDATE users SET balance = balance + ?
+                WHERE id = ?
+            `);
+            balanceUpdateStmt.run(type === 'deposit' ? amount : -amount, userId);
+        });
 
-        if (info.changes === 0) {
-            throw new Error('Update failed');
-        }
-
-        return { message: 'Balance removed successfully' };
+        transaction();
+        console.log(`Transaction completed: ${type} of ${amount} for user ${userId}`);
+        return { success: true, message: 'Transaction successful' };
     } catch (error) {
         throw new Error(error.message);
     }
