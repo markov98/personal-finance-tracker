@@ -8,14 +8,9 @@ export class FinanceService {
 
   constructor(private http: HttpClient) { }
 
-  addBalance(email: string, amount: number) {
+  transaction(userId: string, amount: number, type: string, category: string, description: string, date: Date) {
     return this.http
-      .post('api/balance/add', { email, amount })
-  }
-
-  removeBalance(email: string, amount: number) {
-    return this.http
-      .post('api/balance/remove', { email, amount })
+      .post('api/balance/transaction', { userId, amount, type, category, description, date })
   }
 
   getBalance(email: string) {
