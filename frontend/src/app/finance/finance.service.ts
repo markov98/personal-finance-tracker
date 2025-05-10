@@ -13,8 +13,8 @@ export class FinanceService {
       .post('api/balance/transaction', { userId, amount, type, category, description, date })
   }
 
-  getBalance(email: string) {
+  getBalance(userId: string) {
     return this.http
-      .get(`api/balance/get?${email}`)
+      .get(`api/balance/get?${userId}`)
   }
 }

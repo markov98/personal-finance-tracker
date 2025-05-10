@@ -28,10 +28,10 @@ exports.transaction = async (userId, amount, type, category, description, date) 
     }
 };
 
-exports.getBalance = async (email) => {
+exports.getBalance = async (userId) => {
     try {
-        const stmt = db.prepare('SELECT balance FROM users WHERE email = ?');
-        const user = stmt.get(email);
+        const stmt = db.prepare('SELECT balance FROM users WHERE id = ?');
+        const user = stmt.get(userId);
 
         if (!user) {
             throw new Error('User not found');

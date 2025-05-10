@@ -15,8 +15,8 @@ router.post('/transaction', isAuth, async (req, res) => {
 
 router.get('/get', isAuth, async (req, res) => {
     try {
-        const { email } = req.query;
-        const result = await balanceService.getBalance(email);
+        const { userId } = req.query;
+        const result = await balanceService.getBalance(userId);
         res.json(result);
     } catch (err) {
         console.log(err);
