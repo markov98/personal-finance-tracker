@@ -13,6 +13,11 @@ export class AuthenticateComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    if (!this.userService.userId) {
+      this.isAuthenticating = false; // If no userId, proceed without making an API call
+      return;
+    }
+
     this.userService.getUser(this.userService.userId).subscribe({
       next: () => {
         this.isAuthenticating = false;
