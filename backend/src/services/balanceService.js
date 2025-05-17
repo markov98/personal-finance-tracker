@@ -28,6 +28,26 @@ exports.transaction = async (userId, amount, type, category, description, date) 
     }
 };
 
+exports.getTransactions = async (userId) => {
+    try {
+        const stmt = db.prepare(`
+            SELECT id, amount, type, category, description, date
+            FROM transactions
+            WHERE user_id = ?
+            ORDER BY date DESC
+        `);
+        const transactions = stmt.all(userId);
+
+        if (!transactions.length) {
+            throw new Error('No transactions found for this user');
+        }
+
+        return { transactions };
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+
 exports.getBalance = async (userId) => {
     try {
         const stmt = db.prepare('SELECT balance FROM users WHERE id = ?');
