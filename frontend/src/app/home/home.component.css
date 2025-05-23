@@ -1,0 +1,15 @@
+.home-heading {
+ font-size: 50px;
+}
+
+.home-subheading {
+    font-size: 20px;
+}
+
+.home-heading, .home-subheading {
+    text-align: center;
+}
+
+hr {
+    color: rgb(0, 110, 0);
+}
