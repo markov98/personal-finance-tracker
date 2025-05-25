@@ -1,11 +1,15 @@
 form {
     display: flex;
     flex-direction: column;
-    max-width: 20em;
+    align-items: center;
 }
 
 .invalid-input {
     color: red;
+}
+
+.auth-form input {
+    width: 20em;
 }
 
 .auth-form input[type=submit] {
