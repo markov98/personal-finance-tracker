@@ -57,10 +57,9 @@ export class SignupComponent {
         next: () => {
           this.router.navigate(['/']);
         },
-      error: (err) => {
-        // If backend sends structured errors like { error: 'message here' }
-        this.errorMsg = err?.error?.error || 'Registration failed. Please try again.';
-      }
-    });
+        error: (err) => {
+          this.errorMsg = err?.error?.error || 'Registration failed. Please try again.';
+        }
+      });
   }
 }

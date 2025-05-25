@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   form;
+  errorMsg = '';
 
   constructor(
     private fb: FormBuilder,
@@ -31,8 +32,13 @@ export class LoginComponent {
     const { email, password } = this.form.value;
 
     this.userService.login(email!, password!)
-      .subscribe(() => {
-        this.router.navigate(['/']);
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+        error: (err) => {
+          this.errorMsg = err?.error?.error || 'Login  failed. Please try again.';
+        }
       });
   }
 }
