@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { emailValidator } from '../../utils/email-validator';
 import { matchPasswordsValidator } from '../../utils/password-match-validator';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { ErrorService } from '../../core/error/error.service';
 
 @Component({
   selector: 'app-signup',
@@ -13,11 +13,13 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   form;
+  errorMsg = '';
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private errorService: ErrorService,
+    private router: Router,
   ) {
     this.form = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(5)]],
@@ -46,13 +48,19 @@ export class SignupComponent {
     }
 
     console.log('test2');
-    
+
     const { username, email, passGroup: { password, rePassword } = {} } = this.form.value;
 
     this.userService
       .signup(username!, email!, password!, rePassword!)
-      .subscribe(() => {
-        this.router.navigate(['/']);
-      });
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/']);
+        },
+      error: (err) => {
+        // If backend sends structured errors like { error: 'message here' }
+        this.errorMsg = err?.error?.error || 'Registration failed. Please try again.';
+      }
+    });
   }
 }

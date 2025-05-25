@@ -1,6 +1,6 @@
 import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable, Provider } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from '../environment/env';
 import { ErrorService } from './core/error/error.service';
 import { Router } from '@angular/router';
@@ -39,17 +39,19 @@ class AppInterceptor implements HttpInterceptor {
         }
 
         return next.handle(req).pipe(
+
             catchError((err) => {
                 if (err.status === 401) {
-                    // Redirect to login if unauthorized
+                    // Authrorization error - redirect to login page
                     this.router.navigate(['/login']);
-                } else {
-                    // Handle other errors and redirect to an error page
+                } else if (err.status > 500) {
+                    // Internal server error — redirect to error page
                     this.errorService.setError(err);
                     this.router.navigate(['/error']);
                 }
 
-                return [err]; // Return the error so it can be handled further
+                // Do NOT redirect for 400/422/etc (form or validation errors)
+                return throwError(() => err);
             })
         );
     }

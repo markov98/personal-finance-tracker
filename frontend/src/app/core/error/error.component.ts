@@ -13,7 +13,7 @@ export class ErrorComponent implements OnInit {
 
   ngOnInit(): void {
     this.errorService.apiError$.subscribe((err: any) => {
-      this.errorMsg = err?.message || '';
+      this.errorMsg = err.error?.error || 'An unexpected error occurred';
     });
   }
 }
