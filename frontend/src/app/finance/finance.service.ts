@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Transaction, TransactionForPost } from '../types/transactions';
 
 @Injectable({
   providedIn: 'root'
@@ -8,18 +9,18 @@ export class FinanceService {
 
   constructor(private http: HttpClient) { }
 
-  transaction(userId: string, amount: number, type: string, category: string, description: string, date: Date) {
+  transaction(transactionData: TransactionForPost) {
     return this.http
-      .post('api/balance/transaction', { userId, amount, type, category, description, date })
+      .post<string>('api/balance/transaction', transactionData);
   }
 
   getTransactions(userId: string) {
     return this.http
-      .get(`api/balance/get-transactions?${userId}`)
+      .get<Transaction[]>(`api/balance/get-transactions?${userId}`)
   }
   
   getBalance(userId: string) {
     return this.http
-      .get(`api/balance/get-balance?${userId}`)
+      .get<number>(`api/balance/get-balance?${userId}`)
   }
 }
