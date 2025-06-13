@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RemoveBalanceComponent } from './remove-balance.component';
+import { TransactionListComponent } from './transaction-list.component';
 
-describe('RemoveBalanceComponent', () => {
-  let component: RemoveBalanceComponent;
-  let fixture: ComponentFixture<RemoveBalanceComponent>;
+describe('TransactionListComponent', () => {
+  let component: TransactionListComponent;
+  let fixture: ComponentFixture<TransactionListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RemoveBalanceComponent]
+      imports: [TransactionListComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RemoveBalanceComponent);
+    fixture = TestBed.createComponent(TransactionListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
