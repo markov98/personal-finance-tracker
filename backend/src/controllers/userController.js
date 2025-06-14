@@ -6,25 +6,35 @@ router.post('/register', async (req, res) => {
     try {
         const { username, email, password } = req.body;
         const result = await userService.register(username, email, password);
-        res.json(result)
+        res.status(201).json(result);
     } catch (err) {
-        console.log(err);
-        res.status(500).json({ error: err.message });
+        console.error(err);
+
+        let status = 500;
+        let errMsg = 'An unexpected error occurred during registration.';
+
+        if (err.code === 'SQLITE_CONSTRAINT_UNIQUE' || err.message.includes('UNIQUE constraint failed: users.email')) {
+            status = 400;
+            errMsg = 'Email is already registered.';
+        }
+
+        res.status(status).json({ error: errMsg });
     }
 });
+
 
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         const result = await userService.login(email, password);
-        res.json(result)
+        res.status(200).json(result);
     } catch (err) {
         console.log(err);
-        res.status(500).json({ error: err.message });
+        res.status(400).json({ error: err.message });
     }
 });
 
-router.get("/logout", isAuth, (req, res) => {
+router.post("/logout", isAuth, (req, res) => {
     revokeToken(req.token);
     res.json({ message: "Logout successful!" });
 });
@@ -35,8 +45,8 @@ router.get("/get/:id", isAuth, async (req, res) => {
         const result = await userService.getUser(id);
         res.json(result);
     } catch (err) {
-        console.error(err); 
-        res.status(500).json({ error: err.message });
+        console.error(err);
+        res.status(404).json({ error: err.message });
     }
 });
 
