@@ -21,13 +21,13 @@ exports.login = async (email, password) => {
     const user = stmt.get(email);
 
     if (!user) {
-        throw new Error('User not found');
+        throw new Error('Incorrect username or password');
     }
 
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
-        throw new Error('Incorrect password');
+        throw new Error('Incorrect username or password');
     }
 
     return getResult(user);
