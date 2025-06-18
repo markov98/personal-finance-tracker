@@ -16,11 +16,11 @@ export class FinanceService {
 
   getTransactions(userId: string) {
     return this.http
-      .get<Transaction[]>(`api/balance/get-transactions?${userId}`)
+      .get<Transaction[]>(`api/balance/get-transactions?userId=${userId}`);
   }
   
   getBalance(userId: string) {
     return this.http
-      .get<number>(`api/balance/get-balance?${userId}`)
+      .get<number>(`api/balance/get-balance?userId=${userId}`);
   }
 }
