@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 
@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
   standalone: false,
 })
 export class LoginComponent {
-  form;
-  errorMsg = '';
+  form: FormGroup;
+  errorMsg: string = '';
 
   constructor(
     private fb: FormBuilder,

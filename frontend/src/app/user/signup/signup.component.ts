@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { matchPasswordsValidator } from '../../utils/password-match-validator';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
   standalone: false,
 })
 export class SignupComponent {
-  form;
-  errorMsg = '';
+  form: FormGroup;
+  errorMsg: string = '';
 
   constructor(
     private fb: FormBuilder,
