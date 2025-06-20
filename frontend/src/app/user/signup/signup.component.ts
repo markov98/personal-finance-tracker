@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { matchPasswordsValidator } from '../../utils/password-match-validator';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-import { ErrorService } from '../../core/error/error.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +17,6 @@ export class SignupComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private errorService: ErrorService,
     private router: Router,
   ) {
     this.form = this.fb.group({
