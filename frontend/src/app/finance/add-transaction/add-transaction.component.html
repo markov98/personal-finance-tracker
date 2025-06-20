@@ -1,1 +1,52 @@
-<p>add-transaction works!</p>
+<form [formGroup]="form" (ngSubmit)="addTransaction()">
+
+  <!-- Amount Field -->
+  <div>
+    <label for="amount">Amount</label>
+    <input type="number" id="amount" formControlName="amount" />
+    <div *ngIf="form.get('amount')?.touched && form.get('amount')?.invalid" class="error">
+      Amount is required.
+    </div>
+  </div>
+
+  <!-- Type Field -->
+  <div>
+    <label for="type">Type</label>
+    <select id="type" formControlName="type">
+      <option value="" disabled>Select type</option>
+      <option value="income">Income</option>
+      <option value="expense">Expense</option>
+    </select>
+    <div *ngIf="form.get('type')?.touched && form.get('type')?.invalid" class="error">
+      Type is required.
+    </div>
+  </div>
+
+  <!-- Category Field -->
+  <div>
+    <label for="category">Category</label>
+    <input type="text" id="category" formControlName="category" />
+    <div *ngIf="form.get('category')?.touched && form.get('category')?.invalid" class="error">
+      Category is required.
+    </div>
+  </div>
+
+  <!-- Description Field -->
+  <div>
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+
+  <!-- Date Field -->
+  <div>
+    <label for="date">Date</label>
+    <input type="date" id="date" formControlName="date" />
+    <div *ngIf="form.get('date')?.touched && form.get('date')?.invalid" class="error">
+      Date is required.
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" [disabled]="form.invalid">Submit</button>
+
+</form>

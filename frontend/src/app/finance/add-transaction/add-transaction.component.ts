@@ -27,4 +27,8 @@ export class AddTransactionComponent {
           date: ['', [Validators.required]]
         });
    };
+
+   addTransaction(): void {
+
+   }
 }
