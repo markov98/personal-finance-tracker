@@ -13,22 +13,35 @@ import { Router } from '@angular/router';
 export class AddTransactionComponent {
   form: FormGroup;
 
+
   constructor(
     private financeService: FinanceService,
     private userService: UserService,
     private fb: FormBuilder,
     private router: Router
   ) {
-        this.form = this.fb.group({
-          amount: ['', [Validators.required]],
-          type: ['', [Validators.required]],
-          category: ['', [Validators.required]],
-          description: [''],
-          date: ['', [Validators.required]]
-        });
-   };
+    this.form = this.fb.group({
+      amount: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      category: ['', [Validators.required]],
+      description: [''],
+      date: ['', [Validators.required]]
+    });
+  };
 
-   addTransaction(): void {
+  addTransaction(): void {
+    if (this.form.invalid) {
+      return;
+    }
 
-   }
+    const userId = this.userService.userId
+    const { amount, type, category, description, date } = this.form.value
+
+    this.financeService.transaction({ userId, amount, type, category, description, date })
+      .subscribe({
+        next: () => {
+          console.log('Success!');
+        },
+      })
+  }
 }

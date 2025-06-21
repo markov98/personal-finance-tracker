@@ -2,7 +2,7 @@ export interface Transaction {
   id: string;
   userId: string;
   amount: number;
-  type: string;
+  type: 'income' | 'expense';
   category: string;
   description: string;
   date: Date;
@@ -11,7 +11,7 @@ export interface Transaction {
 export interface TransactionForPost {
   userId: string;
   amount: number;
-  type: string;
+  type: 'income' | 'expense';
   category: string;
   description: string;
   date: Date;

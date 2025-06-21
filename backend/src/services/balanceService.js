@@ -1,7 +1,7 @@
 const db = require('../config/db')
 
 exports.transaction = async (userId, amount, type, category, description, date) => {
-    if (!['deposit', 'withdrawal'].includes(type)) {
+    if (!['income', 'expense'].includes(type)) {
         throw new Error('Invalid transaction type. Use "deposit" or "withdrawal".');
     }
 

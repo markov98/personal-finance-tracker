@@ -4,7 +4,7 @@
         <td><a routerLink="/signup" routerLinkActive="active" ariaCurrentWhenActive="page">Signup</a></td>
     </table>
     <table *ngIf="isLoggedIn" class="logged">
-        <td><a routerLink="/transaction-list" routerLinkActive="active" ariaCurrentWhenActive="page">My Finance</a></td>
+        <td><a routerLink="/add-transaction" routerLinkActive="active" ariaCurrentWhenActive="page">My Finance</a></td>
         <td><span class="logout" (click)="logout()">Logout</span></td>
     </table>
 </div>
