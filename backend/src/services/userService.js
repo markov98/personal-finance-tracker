@@ -41,12 +41,7 @@ exports.getUser = async (id) => {
         throw new Error('User not found');
     }
 
-    return {
-        _id: user.id,
-        email: user.email,
-        username: user.username,
-        balance: user.balance,
-    };
+    return getResult(user);
 };
 
 function getResult(user) {

@@ -29,7 +29,7 @@ class AppInterceptor implements HttpInterceptor {
 
         // Setting Authentication header is user is logged
 
-        if (this.userService.isLogged) {
+        if (this.userService.isLogged || this.userService.userId) {
 
             req = req.clone({
                 setHeaders: {

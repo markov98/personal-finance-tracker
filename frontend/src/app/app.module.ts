@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { httpInterceptorProviders } from './app.interceptor';
+import { FinanceModule } from './finance/finance.module';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { httpInterceptorProviders } from './app.interceptor';
     CommonModule,
     BrowserModule,
     UserModule,
+    FinanceModule,
     AppRoutingModule,
     CoreModule
   ],
