@@ -11,6 +11,7 @@ import { UserService } from '../../user/user.service';
 })
 export class TransactionListComponent implements OnInit {
   transactions: Transaction[] = [];
+  balance: number = 0;
 
   constructor(private financeService: FinanceService, private userService: UserService) {
   }
@@ -19,6 +20,12 @@ export class TransactionListComponent implements OnInit {
     this.financeService.getTransactions(this.userService.userId).subscribe({
       next: (data) => {
         this.transactions = data;
+      }
+    });
+
+    this.financeService.getBalance(this.userService.userId).subscribe({
+      next: (data) => {
+        this.balance = data;
       }
     });
   }

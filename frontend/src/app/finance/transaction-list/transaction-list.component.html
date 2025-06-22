@@ -1,6 +1,10 @@
 <div class="transaction-list">
     <h2>Transaction List</h2>
 
+    <p class="current-balance">Your current ballance is <strong>{{ balance }} BGN</strong></p>
+
+    <a routerLink="/add-transaction" routerLinkActive="active" ariaCurrentWhenActive="page">Add Transaction</a>
+
     <div *ngIf="transactions && transactions.length === 0">
         <p>No transactions available.</p>
     </div>
@@ -18,7 +22,7 @@
             <tr *ngFor="let transaction of transactions">
                 <td>{{ transaction.date }}</td>
                 <td>{{ transaction.category }}</td>
-                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.amount }} BGN</td>
                 <td>{{ transaction.type }}</td>
             </tr>
         </tbody>
