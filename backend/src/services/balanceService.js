@@ -37,7 +37,7 @@ exports.getTransactions = async (userId) => {
         throw new Error('No transactions found for this user');
     }
 
-    return { transactions };
+    return transactions;
 };
 
 exports.getBalance = async (userId) => {
