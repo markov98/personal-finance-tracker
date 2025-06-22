@@ -1,27 +1,27 @@
 <h2 class="auth-heading">Signup</h2>
 <form [formGroup]="form" (ngSubmit)="signup()" class="auth-form">
-    <div *ngIf="errorMsg" class="invalid-input">{{ errorMsg }}</div>
+    <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
     <label for="username">Username:</label>
     <input type="text" id="username" formControlName="username" required>
     <div *ngIf="form.get('username')?.invalid && (form.get('username')?.dirty || form.get('username')?.touched)">
-        <div class="invalid-input" *ngIf="form.get('username')?.errors?.['required']">Username is required.</div>
-        <div class="invalid-input" *ngIf="form.get('username')?.errors?.['minlength']">Username must be at least 5 characters long.</div>
+        <div class="error" *ngIf="form.get('username')?.errors?.['required']">Username is required.</div>
+        <div class="error" *ngIf="form.get('username')?.errors?.['minlength']">Username must be at least 5 characters long.</div>
     </div>
 
     <label for="email">Email:</label>
     <input type="email" id="email" formControlName="email" required>
     <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)">
-        <div class="invalid-input" *ngIf="form.get('email')?.errors?.['required']">Email is required.</div>
-        <div class="invalid-input" *ngIf="form.get('email')?.errors?.['email']">Email must be valid.</div>
+        <div class="error" *ngIf="form.get('email')?.errors?.['required']">Email is required.</div>
+        <div class="error" *ngIf="form.get('email')?.errors?.['email']">Email must be valid.</div>
     </div>
     <ng-container formGroupName="passGroup">
         <label for="password">Password:</label>
         <input type="password" id="password" formControlName="password" required>
         <label for="confirm-password">Confirm Password:</label>
         <input type="password" id="confirm-password" formControlName="rePassword" required>
-        <div class="invalid-input" *ngIf="passGroup?.errors?.['matchPasswordsValidator']">
+        <div class="error" *ngIf="passGroup?.errors?.['matchPasswordsValidator']">
             Passwords must match.
         </div>
     </ng-container>
-    <input type="submit" value="Signup" [disabled]="form.invalid">
+    <button type="submit" [disabled]="form.invalid">Signup</button>
 </form>

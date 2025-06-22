@@ -1,23 +1,134 @@
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.invalid-input {
-    color: red;
+form div {
+  margin-bottom: 1.5rem;
 }
 
-.auth-form input {
-    width: 20em;
+form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
 }
 
-.auth-form input[type=submit] {
-    font-size: 20px;
-    width: 6em;
-    color: white;
-    background-color: green;
-    border-radius: 0.5em;
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f3f4f6;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  background-color: #e0f7e9;
+  box-shadow: 0 0 0 2px #38a169;
+  outline: none;
+}
+
+form .error {
+  color: #e63946;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+form button[type="submit"] {
+  background-color: #38a169; /* green */
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover:not(:disabled) {
+  background-color: #2f855a;
+}
+
+form button[disabled] {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form div {
+  margin-bottom: 1.5rem;
+}
+
+form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #333;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f3f4f6;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  background-color: #e0f7e9;
+  box-shadow: 0 0 0 2px #38a169;
+  outline: none;
+}
+
+form .error {
+  color: #e63946;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+form button[type="submit"] {
+  background-color: #38a169;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover:not(:disabled) {
+  background-color: #2f855a;
+}
+
+form button[disabled] {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.auth-form button {
+    margin-top: 1.5em;
 }
 
 body {
