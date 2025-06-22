@@ -40,7 +40,7 @@ export class AddTransactionComponent {
     this.financeService.transaction({ userId, amount, type, category, description, date })
       .subscribe({
         next: () => {
-          console.log('Success!');
+          this.router.navigate(['/transaction-list'])
         },
       })
   }
