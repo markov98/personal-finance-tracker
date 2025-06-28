@@ -135,12 +135,20 @@ body {
     padding: 0;
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
 }
 
 h1, h2 {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+app-authenticate {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 main {
     margin-inline: 1em;
+    flex: 1;
 }
