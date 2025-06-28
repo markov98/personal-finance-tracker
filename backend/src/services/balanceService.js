@@ -26,7 +26,7 @@ exports.transaction = async (userId, amount, type, category, description, date) 
 
 exports.getTransactions = async (userId) => {
     const stmt = db.prepare(`
-            SELECT id, amount, type, category, description, date
+            SELECT id, amount, type, category, date
             FROM transactions
             WHERE user_id = ?
             ORDER BY date DESC
@@ -39,6 +39,25 @@ exports.getTransactions = async (userId) => {
 
     return transactions;
 };
+
+exports.getTranssactionDetails = async (userId, transactionId) => {
+    const stmt = db.prepare(`
+            SELECT id, user_id, amount, type, category, description, date
+            FROM transactions
+            WHERE id = ?
+            ORDER BY date DESC
+        `);
+
+    const transaction = stmt.get(transactionId);
+
+    if (!transaction) {
+        throw new Error('Transaction does not exists');
+    } else if (transaction.user_id !== userId) {
+        throw new Error('You are not authorized to access this transaction');
+    }
+
+    return transaction;
+}
 
 exports.getBalance = async (userId) => {
     const stmt = db.prepare('SELECT balance FROM users WHERE id = ?');
