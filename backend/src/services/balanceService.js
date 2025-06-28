@@ -26,7 +26,7 @@ exports.transaction = async (userId, amount, type, category, description, date) 
 
 exports.getTransactions = async (userId) => {
     const stmt = db.prepare(`
-            SELECT id, amount, type, category, description, date
+            SELECT id, amount, type, category, date
             FROM transactions
             WHERE user_id = ?
             ORDER BY date DESC
