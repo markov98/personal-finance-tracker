@@ -27,7 +27,7 @@ router.get('/get-transactions', isAuth, async (req, res) => {
 router.get('/transactions/:id', isAuth, async (req, res) => {
     try {
         const transactionId = req.params.id;
-        const { userId } = req.body
+        const { userId } = req.user.id;
         const result = await balanceService.getTranssactionDetails(userId, transactionId);
         res.json(result);
     } catch (err) {
