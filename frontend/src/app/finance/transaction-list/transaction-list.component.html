@@ -19,7 +19,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let transaction of transactions">
+            <tr *ngFor="let transaction of transactions" [routerLink]="['/transactions', transaction.id]"
+                style="cursor: pointer;">
                 <td>{{ transaction.date }}</td>
                 <td>{{ transaction.category }}</td>
                 <td>{{ transaction.amount }} BGN</td>

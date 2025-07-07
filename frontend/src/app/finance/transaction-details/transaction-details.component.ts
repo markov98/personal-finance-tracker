@@ -17,8 +17,8 @@ export class TransactionDetailsComponent {
   ngOnInit(): void {
     this.activeRoute.params.subscribe((data) => {
       this.financeService.getTransactionDetails(data['transactionId']).subscribe({
-        next: (data) => {
-          this.transaction = data;
+        next: (transactionData) => {
+          this.transaction = transactionData;
         }
       });
     })

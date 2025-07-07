@@ -40,7 +40,7 @@ exports.getTransactions = async (userId) => {
     return transactions;
 };
 
-exports.getTranssactionDetails = async (userId, transactionId) => {
+exports.getTransactionDetails = async (userId, transactionId) => {
     const stmt = db.prepare(`
             SELECT id, user_id, amount, type, category, description, date
             FROM transactions
@@ -53,6 +53,8 @@ exports.getTranssactionDetails = async (userId, transactionId) => {
     if (!transaction) {
         throw new Error('Transaction does not exists');
     } else if (transaction.user_id !== userId) {
+        console.log(transaction.user_id);
+        console.log(userId);
         throw new Error('You are not authorized to access this transaction');
     }
 
