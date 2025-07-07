@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Transaction } from '../../types/transactions';
 import { FinanceService } from '../finance.service';
 
@@ -9,16 +10,17 @@ import { FinanceService } from '../finance.service';
   styleUrl: './transaction-details.component.css'
 })
 export class TransactionDetailsComponent {
-  transaction: Transaction | undefined;
-  transId: string = "placeholder";
+  transaction = {} as Transaction;
 
-  constructor(private financeService: FinanceService) {}
+  constructor(private financeService: FinanceService, private activeRoute: ActivatedRoute) { }
 
-    ngOnInit(): void {
-    this.financeService.getTransactionDetails(this.transId).subscribe({
-      next: (data) => {
-        this.transaction = data;
-      }
-    });
+  ngOnInit(): void {
+    this.activeRoute.params.subscribe((data) => {
+      this.financeService.getTransactionDetails(data['transactionId']).subscribe({
+        next: (data) => {
+          this.transaction = data;
+        }
+      });
+    })
   }
 }
