@@ -44,6 +44,28 @@ exports.getUser = async (id) => {
     return getResult(user);
 };
 
+exports.changePassword = async (userId, currentPassword, newPassword) => {
+    const stmt = db.prepare('SELECT password FROM users WHERE id = ?');
+    const user = stmt.get(userId);
+
+    if (!user) {
+        throw new Error('User not found');
+    }
+
+    const passwordMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!passwordMatch) {
+        throw new Error('Current password is incorrect');
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    const updateStmt = db.prepare('UPDATE users SET password = ? WHERE id = ?');
+    updateStmt.run(hashedNewPassword, userId);
+
+    return { message: 'Password changed successfully' };
+};
+
+
 function getResult(user) {
     const payload = { _id: user.id, email: user.email };
     const token = jwt.sign(payload, SECRET, { expiresIn: "1h" });
