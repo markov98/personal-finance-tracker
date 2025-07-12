@@ -39,6 +39,18 @@ router.post("/logout", isAuth, (req, res) => {
     res.json({ message: "Logout successful!" });
 });
 
+router.put('/login', async (req, res) => {
+    try {
+        const { currentPassword, newPassword } = req.body;
+        const userId = req.user._id
+        const result = await userService.changePassword(userId, currentPassword, newPassword);
+        res.status(200).json(result);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ error: err.message });
+    }
+});
+
 router.get("/get/:id", isAuth, async (req, res) => {
     try {
         const { id } = req.params;
