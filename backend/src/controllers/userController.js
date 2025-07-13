@@ -39,7 +39,7 @@ router.post("/logout", isAuth, (req, res) => {
     res.json({ message: "Logout successful!" });
 });
 
-router.put('/login', async (req, res) => {
+router.put('/change-password', async (req, res) => {
     try {
         const { currentPassword, newPassword } = req.body;
         const userId = req.user._id
