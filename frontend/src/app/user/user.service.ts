@@ -82,6 +82,13 @@ export class UserService implements OnDestroy {
       }));
   }
 
+  changePassword(
+    currentPassword: string,
+    newPassword: string
+  ) {
+    return this.http.put<UserForAuth>('api/users/change-password', { currentPassword, newPassword })
+  }
+
   getUser(id: string) {
     return this.http
       .get<UserForAuth>(`api/users/get/${id}`)
