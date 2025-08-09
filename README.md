@@ -12,7 +12,6 @@ Tracking of balance and transactions
 git clone https://github.com/markov98/personal-finance-tracker.git
 cd personal-finance-tracker
 npm install
-npm run setup:server
-npm run setup:client
-npm start
+docker-compose build
+docker-compose up
 ```
