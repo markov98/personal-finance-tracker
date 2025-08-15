@@ -8,6 +8,7 @@ User Authentication</br>
 Tracking of balance and transactions
 
 ## Getting it running
+You need to download and install <a href="https://www.docker.com/">Docker</a>.
 ```bash
 git clone https://github.com/markov98/personal-finance-tracker.git
 cd personal-finance-tracker
